@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 1, opacity: 1, type: "spring" }}
-          transition={{ duration: 3, delay: 7 }}
+          transition={{ duration: 3 }}
           style={{ width: "30vw" }}
         >
           <Typography variant="h2" fontFamily={"serif"} textAlign="left">
