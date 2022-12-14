@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/store";
-import { categories, ICategories } from "../../lib/categories";
+import { categories } from "../../lib/categories";
 import {
   setClear,
   setImageListDisplay,
