@@ -85,6 +85,7 @@ const DisplayInfo: NextPage = () => {
     (state: RootState) => state.details.singleImages
   );
   const loading = useSelector((state: RootState) => state.category.loading);
+  const contactName = useSelector((state: RootState) => state.details.contactName);
 
   const mapSearch = (address: string): void => {
     window.open(

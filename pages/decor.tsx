@@ -21,16 +21,15 @@ export default function Home() {
     (state: RootState) => state.category.imageListDisplay
   );
 
+  console.log('detailDisplay', detailDisplay)
+
   return (
     <Container maxWidth={"lg"}>
       <Head>
         <title>Decor Vietnam</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {detailDisplay ? <DisplayInfo /> : null}
-
-      {detailDisplay ? null : <ImageListDisplay />}
-
+      {detailDisplay ? <DisplayInfo /> : <ImageListDisplay />}
       {!detailDisplay && imageListDisplay && <PageSelection />}
     </Container>
   );

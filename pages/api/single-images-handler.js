@@ -47,7 +47,7 @@ export default async function (req, res) {
 
       let singleImages = [];
 
-      $("img[class=picCore]").each(function () {
+      $("img[class=listing_detail_product_showcase_frame]").each(function () {
         const images = $(this).attr("src");
         if (!images) {
           return images.push("Not found");

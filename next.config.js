@@ -6,6 +6,7 @@ const nextConfig = {
       "/logo-pic-resized.jpg",
       "www.cp24.com",
       "pic.yellowpages.com.vn",
+      "products.yellowpages.com.vn"
     ],
   },
   async headers() {

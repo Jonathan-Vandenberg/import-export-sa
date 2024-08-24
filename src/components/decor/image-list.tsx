@@ -57,8 +57,8 @@ const ImageListDisplay: NextPage = () => {
     <Stack direction="row">
       <ImageList cols={3} style={{ width: "100%" }}>
         {images.map((item) =>
-          item.businessImages.map((img) => (
-            <ImageListItem key={item.urls}>
+          item.businessImages.map((img, index) => (
+            <ImageListItem key={item.urls + index}>
               <motion.div
                 initial="hidden"
                 whileInView="visible"

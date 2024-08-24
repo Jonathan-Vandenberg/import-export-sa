@@ -7,6 +7,7 @@ export interface DetailsState {
   products: string[];
   about: string;
   name: string;
+  contactName: string;
   detailDisplay: boolean;
   singleUrl: string;
   singleImage: string;
@@ -20,6 +21,7 @@ const initialState: DetailsState = {
   products: [],
   about: "",
   name: "",
+  contactName: "",
   detailDisplay: false,
   singleUrl: "",
   singleImage: "",
@@ -60,6 +62,9 @@ export const DetailsSlice = createSlice({
     setSingleImages: (state, action) => {
       state.singleImages = action.payload;
     },
+    setContactName: (state, action) => {
+      state.contactName = action.payload;
+    },
   },
 });
 
@@ -75,6 +80,7 @@ export const {
   setSingleUrl,
   setSingleImage,
   setSingleImages,
+  setContactName,
 } = DetailsSlice.actions;
 
 export default DetailsSlice.reducer;

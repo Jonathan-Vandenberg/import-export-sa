@@ -47,7 +47,7 @@ export default async function (req, res) {
 
       let urlBusiness = [];
 
-      $(".company_name").each(function () {
+      $(".ten_sodienthoai_div").each(function () {
         const url = $(this).find("a").attr("href");
         urlBusiness.push(url);
       });

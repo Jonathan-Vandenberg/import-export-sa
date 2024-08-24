@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext", "es6"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "types": ["node", "@types/parse-json", "@types/webidl-conversions", "@types/whatwg-url"],
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,

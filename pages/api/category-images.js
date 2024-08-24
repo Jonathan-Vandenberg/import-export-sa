@@ -36,7 +36,7 @@ export default async function (req, res) {
   if (page === 1) {
     finalSearchQuery = searchQuery;
   } else {
-    finalSearchQuery = searchQuery.concat(`?page=${page}`);
+    finalSearchQuery = searchQuery + `?page=${page}`;
   }
 
   if (req.method === "POST") {
@@ -45,9 +45,11 @@ export default async function (req, res) {
       const html = await response.text();
       const $ = cheerio.load(html);
 
+      console.log('finalSearchQuery: ', finalSearchQuery)
+
       let businessImages = [];
 
-      $("img[class=picCore]").each(function () {
+      $(".listing_detail_product_showcase_frame img").each(function () {
         const image = $(this).attr("src");
         if (!image) {
           return businessImages.push("Not found");

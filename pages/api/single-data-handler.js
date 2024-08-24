@@ -39,54 +39,43 @@ export default async function (req, res) {
 
       let phone = [];
       let email = [];
-      let address = [];
       let name = [];
       let website = [];
       let about = [];
       let products = [];
+      let address = [];
       let singleImages = [];
 
-      const searchParams = {
-        address:
-          'p[style="padding-top:2px; line-height:18px; padding-bottom:6px"]',
-        phoneNumbers:
-          'p[style="padding-top:3px; line-height:19px; font-size:15px; font-weight:700; padding-bottom:6px; color:#333"]',
-        url: 'p[style="padding-top:5px; font-size:13px;"]',
-        companyName:
-          'h1[style="font-size:18px; font-weight:bold; color: #222; text-align: left; text-transform: capitalize; margin-bottom: 3px;"]',
-        email: 'a[style="color:#3B65A7"]',
-        about: 'p[style="color:#111; font-size:13px; line-height:23px"]',
-        products: ".tensanphamdichvu_name",
-      };
-
-      const phoneBusiness = $(searchParams.phoneNumbers, html)
-        .text()
-        .match(/[0-9]/gi)
-        .join("")
-        .slice(-11);
-      phone.push(`+84 ${phoneBusiness}`);
-
-      const emailBusiness = $(searchParams.email, html).attr("href");
-      email.push(emailBusiness);
-
-      const nameBusiness = $(searchParams.companyName, html).text();
+      const nameBusiness = $("h1.fs-3").text().trim();
       name.push(nameBusiness);
 
-      const websiteBusiness = $(searchParams.url, html).find("a").attr("href");
+      const websiteBusiness = $("a[rel='nofollow']").attr("href");
       website.push(websiteBusiness);
 
-      const addressBusiness = $(searchParams.address, html).text();
+      // About information is not present in the provided HTML block
+      about.push("Not available");
+
+      // Extract contact information
+      const contactName = $(".contact_infomation .light_gray_bg:nth-child(2) small").text().trim();
+      name.push(contactName);
+
+      const phoneBusiness = $(".contact_infomation .light_gray_bg:nth-child(4) a").text().trim();
+      phone.push(phoneBusiness);
+
+      const emailBusiness = $("#email_contact").text().trim();
+      email.push(emailBusiness);
+
+      const addressBusiness = $(".logo_lisitng_address .pc_display").first().text().trim();
       address.push(addressBusiness);
 
-      const aboutBusiness = $(searchParams.about, html).text();
-      about.push(aboutBusiness);
-
-      $(searchParams.products, html).each(function () {
-        const productsBusiness = $(this).find("a").attr("title");
-        products.push(productsBusiness);
+      $(".product_list li").each(function () {
+        const productsBusiness = $(this).find("a").text().trim();
+        if (productsBusiness) {
+          products.push(productsBusiness);
+        }
       });
 
-      $("img[class=picCore]").each(function () {
+      $("img[class=listing_detail_product_showcase_frame]").each(function () {
         const productImages = $(this).attr("src");
         if (!productImages) {
           return singleImages.push("Not found");
@@ -108,7 +97,7 @@ export default async function (req, res) {
     } catch (e) {
       res.statusCode = 404;
       return res.json({
-        error: "Oops, something went wrong...",
+        error: "Oops, something went wrong..." + e.message,
       });
     }
   }
